@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Card, CardContent, TextField, Typography, Link } from "@mui/material";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from 'axios';
 
 // Validation schema
 const validationSchema = Yup.object({
@@ -12,11 +13,38 @@ const validationSchema = Yup.object({
 });
 
 export default function LoginPage() {
-  const handleLogin = (values: { email: string; password: string }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = async (values: { email: string; password: string }) => {
     console.log("User Login Details:");
     console.log("Email:", values.email);
     console.log("Password:", values.password);
+
+    setEmail(values.email);
+    setPassword(values.password);
+
     // Add further login logic here, like API call
+    try {
+      // Clear previous errors
+      setError('');
+
+      // Make the API call
+      const response = await axios.post('/api/login', { email, password });
+
+      if (response.status === 200) 
+        console.log('Login successful:', response.data);
+        // Redirect or handle success here
+    } catch (err: any) {
+      // Handle error
+      if (err.response) {
+        setError(err.response.data.message || 'Login failed');
+      } else {
+        setError('An error occurred. Please try again later.');
+      }
+    }
+
   };
 
   return (
@@ -94,6 +122,7 @@ export default function LoginPage() {
               Sign Up
             </Link>
           </Typography>
+          {error && <Typography color='error' fontWeight='bold' textTransform='capitalize' textAlign={'center'}>{error}</Typography>}
         </CardContent>
       </Card>
     </Box>
