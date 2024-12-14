@@ -1,0 +1,15 @@
+{
+    "vs-code-prettier-eslint.prettierLast": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5433,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "360dbs",
+            "database": "strategic_degree",
+            "username": "postgres"
+        }
+    ]
+}

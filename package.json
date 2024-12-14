@@ -13,9 +13,13 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.1.10",
     "@mui/material": "^6.1.10",
+    "bcryptjs": "^2.4.3",
+    "formik": "^2.4.6",
     "next": "15.0.4",
+    "pg": "^8.13.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "yup": "^1.5.0"
   },
   "devDependencies": {
     "@types/node": "^20",
